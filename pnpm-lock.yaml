@@ -11,6 +11,9 @@ importers:
       '@fontsource/plus-jakarta-sans':
         specifier: ^5.1.1
         version: 5.1.1
+      '@fontsource/source-code-pro':
+        specifier: ^5.1.1
+        version: 5.1.1
       '@tailwindcss/forms':
         specifier: ^0.5.10
         version: 0.5.10(tailwindcss@4.0.2)
@@ -35,6 +38,9 @@ importers:
       lucide-svelte:
         specifier: ^0.474.0
         version: 0.474.0(svelte@5.19.6)
+      uuid:
+        specifier: ^11.0.5
+        version: 11.0.5
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^4.0.0
@@ -222,6 +228,9 @@ packages:
 
   '@fontsource/plus-jakarta-sans@5.1.1':
     resolution: {integrity: sha512-czlD7FGbJqZ+5YVJ1LK3mVh2GIbGQZDQTtsv2leNgJC5lxNQ3dnqPURCNeW+nfPrcMHO94Er4qpklmJM++UHPw==}
+
+  '@fontsource/source-code-pro@5.1.1':
+    resolution: {integrity: sha512-J2adI3neDfsPpJp4T51bo0M1jUGLH3m+l1+d+2qrcuAYb51ozlMggv/YoLHVhyOAvanvfgwMI1HiSMQBQUadCg==}
 
   '@jridgewell/gen-mapping@0.3.8':
     resolution: {integrity: sha512-imAbBGkb+ebQyxKgzv5Hu2nmROxoDOXHh80evxdoXNOrvAnVx7zimzc1Oo5h9RlfV4vPXaE2iM5pOFbvOCClWA==}
@@ -1140,6 +1149,10 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
+  uuid@11.0.5:
+    resolution: {integrity: sha512-508e6IcKLrhxKdBbcA2b4KQZlLVp2+J5UwQ6F7Drckkc5N9ZJwFa4TgWtsww9UG8fGHbm6gbV19TdM5pQ4GaIA==}
+    hasBin: true
+
   vite@6.0.11:
     resolution: {integrity: sha512-4VL9mQPKoHy4+FE0NnRE/kbY51TOfaknxAjt3fJbGJxhIpBZiqVzlZDEesWWsuREXHwNdAoOFZ9MkPEVXczHwg==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
@@ -1289,6 +1302,8 @@ snapshots:
     optional: true
 
   '@fontsource/plus-jakarta-sans@5.1.1': {}
+
+  '@fontsource/source-code-pro@5.1.1': {}
 
   '@jridgewell/gen-mapping@0.3.8':
     dependencies:
@@ -2173,6 +2188,8 @@ snapshots:
       safe-buffer: 5.2.1
 
   util-deprecate@1.0.2: {}
+
+  uuid@11.0.5: {}
 
   vite@6.0.11(jiti@2.4.2)(lightningcss@1.29.1):
     dependencies:

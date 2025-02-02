@@ -2,13 +2,13 @@
   import { page } from "$app/stores";
   import { Eye, EyeOff, LogIn, Check } from "lucide-svelte";
 
-  export let formData;
+  export let login;
   export let loginFormAction;
 
   let showPassword = false;
 
   async function handleKeydown(event) {
-    if (event.key === "Enter" && formData.email && formData.password) {
+    if (event.key === "Enter" && login.email && login.password) {
       loginFormAction();
     }
   }
@@ -29,20 +29,20 @@
     type="email"
     class="input input-bordered w-full max-w-xs"
     placeholder="Email"
-    bind:value={formData.email}
+    bind:value={login.email}
     on:keydown={handleKeydown}
   />
-  <div class="flex items-center">
+  <label class="input input-bordered input-sm flex items-center gap-2">
     {#if !showPassword}
       <input
         type="password"
-        class="input input-bordered w-full max-w-xs"
+        class="grow"
         placeholder="Password"
-        bind:value={formData.password}
+        bind:value={login.password}
         on:keydown={handleKeydown}
       />
       <button
-        class="-ms-9 text-black z-[100] cursor-pointer"
+        class="-ms-8 text-black z-[100] cursor-pointer"
         title="Click to show password"
         on:click={() => (showPassword = !showPassword)}
       >
@@ -51,26 +51,31 @@
     {:else}
       <input
         type="text"
-        class="input input-bordered w-full max-w-xs"
+        class="grow"
         placeholder="Password"
-        bind:value={formData.password}
+        bind:value={login.password}
         on:keydown={handleKeydown}
       />
       <button
-        class="-ms-9 text-black z-[100] cursor-pointer"
+        class="-ms-8 text-black z-[100] cursor-pointer"
         title="Click to hide password"
         on:click={() => (showPassword = !showPassword)}
       >
         <EyeOff size={18} />
       </button>
     {/if}
-  </div>
+  </label>
   <button
     class="btn btn-primary mt-2"
-    disabled={!formData.email || !formData.password}
+    title={$page.data.is_registered
+      ? "Login to application"
+      : "Register new account"}
+    disabled={!login.email || !login.password || login.loading}
     on:click={() => loginFormAction()}
   >
-    {#if $page.data.is_registered}
+    {#if login.loading}
+      <span class="loading loading-spinner loading-xs"></span> Loading...
+    {:else if $page.data.is_registered}
       <LogIn size={16} /> Login
     {:else}
       <Check size={16} /> Register

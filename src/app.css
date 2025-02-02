@@ -2,6 +2,7 @@
 @plugin "daisyui";
 
 @import "@fontsource/plus-jakarta-sans";
+@import "@fontsource/source-code-pro";
 
 input::-ms-reveal,
 input::-ms-clear {
@@ -10,4 +11,8 @@ input::-ms-clear {
 
 body {
     font-family: 'Plus Jakarta Sans Variable', sans-serif;
+}
+
+textarea {
+    font-family: 'Source Code Pro Variable', monospace;
 }

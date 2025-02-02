@@ -8,10 +8,10 @@ export async function schema() {
             password TEXT NOT NULL
         );`,
         `CREATE TABLE IF NOT EXISTS env (
-            id TEXT PRIMARY KEY DEFAULT (lower(hex(randomblob(16)))),
+            id TEXT PRIMARY KEY NOT NULL,
             title TEXT NOT NULL,
             content TEXT,
-            timestamp INTEGER NOT NULL
+            timestamp INTEGER NOT NULL DEFAULT (unixepoch())
         );
     `];
 
