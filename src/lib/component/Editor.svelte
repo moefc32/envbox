@@ -1,6 +1,7 @@
 <script>
   import { goto } from "$app/navigation";
   import { ArrowLeft, Check, X } from "lucide-svelte";
+  import { toast } from "svoast";
   import datePrettier from "$lib/datePrettier";
 
   import { initialValues } from "$lib/stores/initialValues";
@@ -30,6 +31,10 @@
         content: result.data.column.content,
       });
 
+      toast.success(
+        `${contents.id ? "Environment" : "New environment"} saved successfully.`
+      );
+
       contents.id = result.data.column.id;
       contents.title = result.data.column.title;
       contents.content = result.data.column.content;
@@ -39,6 +44,7 @@
       await reloadEnvList();
     } catch (e) {
       console.error(e);
+      toast.error("Save environment failed, please try again!");
     }
   }
 
@@ -53,10 +59,12 @@
 
       if (!response.ok) throw new Error();
 
+      toast.success("Environment deleted successfully.");
       await closeEditor();
       await reloadEnvList();
     } catch (e) {
       console.error(e);
+      toast.error("Delete environment failed, please try again!");
     }
   }
 </script>

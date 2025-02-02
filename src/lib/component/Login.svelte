@@ -1,6 +1,7 @@
 <script>
   import { page } from "$app/stores";
   import { Eye, EyeOff, LogIn, Check } from "lucide-svelte";
+  import isValidEmail from "$lib/isValidEmail";
 
   export let login;
   export let loginFormAction;
@@ -32,7 +33,7 @@
     bind:value={login.email}
     on:keydown={handleKeydown}
   />
-  <label class="input input-bordered input-sm flex items-center gap-2">
+  <label class="input input-bordered flex items-center gap-2">
     {#if !showPassword}
       <input
         type="password"
@@ -70,7 +71,10 @@
     title={$page.data.is_registered
       ? "Login to application"
       : "Register new account"}
-    disabled={!login.email || !login.password || login.loading}
+    disabled={!login.email ||
+      !isValidEmail(login.email) ||
+      !login.password ||
+      login.loading}
     on:click={() => loginFormAction()}
   >
     {#if login.loading}

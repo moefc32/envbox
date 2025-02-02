@@ -8,6 +8,7 @@ import { hashPassword, comparePassword } from '$lib/server/hash';
 import { decodeToken } from '$lib/server/token';
 import jwt from 'jsonwebtoken';
 import model from '$lib/server/model/auth';
+import isValidEmail from "$lib/isValidEmail";
 
 export async function POST({ cookies, request }) {
     const {
@@ -15,8 +16,17 @@ export async function POST({ cookies, request }) {
         password = '',
     } = await request.json() || {};
 
+    if (!isValidEmail(email)) {
+        return json({
+            application: VITE_APP_NAME,
+            message: 'Login failed, please try again!',
+        }, {
+            status: 400,
+        });
+    }
+
     try {
-        const result = await model.getData(email);
+        const result = await model.getData(email.trim().toLowerCase());
         const match = result
             ? await comparePassword(password, result?.password)
             : false;
@@ -67,6 +77,15 @@ export async function PATCH({ cookies, request }) {
         password = '',
     } = await request.json() || {};
 
+    if (!isValidEmail(email)) {
+        return json({
+            application: VITE_APP_NAME,
+            message: 'Save data failed, please try again!',
+        }, {
+            status: 400,
+        });
+    }
+
     try {
         const access_token = await cookies.get('access_token');
         const decoded_token = await decodeToken(access_token);
@@ -81,7 +100,7 @@ export async function PATCH({ cookies, request }) {
             });
 
         const data = {
-            email: email === '' ? null : email,
+            email: email === '' ? null : email.trim().toLowerCase(),
             password: password
                 ? await hashPassword(password)
                 : null,
@@ -111,6 +130,15 @@ export async function PUT({ request }) {
         password = '',
     } = await request.json() || {};
 
+    if (!isValidEmail(email)) {
+        return json({
+            application: VITE_APP_NAME,
+            message: 'Save data failed, please try again!',
+        }, {
+            status: 400,
+        });
+    }
+
     try {
         const countUser = await model.getData();
 
@@ -123,7 +151,7 @@ export async function PUT({ request }) {
             });
 
         const result = await model.createData({
-            email,
+            email: email.trim().toLowerCase(),
             password: await hashPassword(password),
         });
 

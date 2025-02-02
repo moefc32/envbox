@@ -1,6 +1,7 @@
 <script>
   import { page } from "$app/stores";
   import { toast } from "svoast";
+  import isValidEmail from "$lib/isValidEmail";
 
   import { initialValues } from "$lib/stores/initialValues";
 
@@ -28,6 +29,7 @@
   async function loginFormAction() {
     try {
       login.loading = true;
+      if (!isValidEmail(login.email)) throw new Error();
 
       const response = await fetch("/api/auth", {
         method: $page.data.is_registered ? "POST" : "PUT",

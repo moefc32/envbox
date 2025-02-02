@@ -27,6 +27,7 @@ export async function load({ cookies, url }) {
     return {
         access_token,
         is_registered: !!isUserPresent,
+        user_email: isUserPresent?.email,
         hashed_email,
         contents: {
             all_contents,

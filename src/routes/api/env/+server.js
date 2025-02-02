@@ -1,10 +1,7 @@
 import { VITE_APP_NAME } from '$env/static/private';
 import { json } from '@sveltejs/kit';
 import model from '$lib/server/model/env';
-
-function trimText(text) {
-    return text.trim().replace(/\n+$/, '');
-}
+import trimText from '$lib/trimText';
 
 export async function GET({ url }) {
     const id = url.searchParams.get('id');
@@ -80,7 +77,7 @@ export async function PATCH({ url, request }) {
             content: trimmedContent === ''
                 ? trimmedContent
                 : trimmedContent + '\n'
-        });
+        }, id);
 
         return json({
             application: VITE_APP_NAME,
