@@ -7,6 +7,7 @@
   import Login from "$lib/component/Login.svelte";
   import Header from "$lib/component/Header.svelte";
   import Sidebar from "$lib/component/Sidebar.svelte";
+  import Dashboard from "$lib/component/Dashboard.svelte";
   import Editor from "$lib/component/Editor.svelte";
 
   export let data;
@@ -159,6 +160,7 @@
         {doSearch}
         {openEnv}
       />
+      <Dashboard {contents} />
       <Editor
         contents={contents?.opened_contents}
         {closeEditor}

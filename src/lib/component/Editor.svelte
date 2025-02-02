@@ -60,8 +60,8 @@
   }
 </script>
 
-<div class="flex flex-1 flex-col gap-3 mt-2 mb-6 py-3">
-  {#if contents?.id || contents?.is_new}
+{#if contents?.id || contents?.is_new}
+  <main class="flex flex-1 flex-col gap-3 mt-2 mb-6 py-3">
     <input
       type="text"
       class="input input-bordered input-lg text-xl px-4 w-full"
@@ -74,7 +74,7 @@
       Last saved at {datePrettier(contents?.timestamp)}
     </p>
     <textarea
-      class="card flex-1 px-4 py-3 bg-[#272822] text-white w-full resize-none"
+      class="card flex-1 px-4 py-3 bg-[#272822] text-white w-full resize-none shadow"
       spellcheck="false"
       bind:value={contents.content}
     ></textarea>
@@ -107,8 +107,8 @@
         </button>
       {/if}
     </div>
-  {/if}
-</div>
+  </main>
+{/if}
 
 <dialog id="env_delete" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box">

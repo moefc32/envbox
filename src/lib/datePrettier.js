@@ -21,5 +21,5 @@ export default function datePrettier(timestamp, longDate = true) {
     const seconds = String(date.getSeconds()).padStart(2, '0');
     const formattedTime = `${hours}:${minutes}:${seconds}`;
 
-    return `${formattedDate}, ${formattedTime}`;
+    return `${formattedDate} - ${formattedTime}`;
 }
