@@ -3,6 +3,7 @@
   import { toast } from "svoast";
   import isValidEmail from "$lib/isValidEmail";
 
+  import { sidebarDrawer } from "$lib/stores/sidebarDrawer";
   import { initialValues } from "$lib/stores/initialValues";
 
   import Login from "$lib/component/Login.svelte";
@@ -110,6 +111,8 @@
   }
 
   async function openEnv(id) {
+    sidebarDrawer.set(false);
+
     try {
       if (!id)
         return (contents.opened_contents = {
@@ -139,6 +142,8 @@
   }
 
   async function closeEditor() {
+    sidebarDrawer.set(false);
+
     contents.opened_contents.id = "";
     contents.opened_contents.title = "";
     contents.opened_contents.content = "";

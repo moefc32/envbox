@@ -5,6 +5,8 @@
   import { toast } from "svoast";
   import isValidEmail from "$lib/isValidEmail";
 
+  import { sidebarDrawer } from "$lib/stores/sidebarDrawer";
+
   export let closeEditor;
   export let doLogout;
 
@@ -52,14 +54,20 @@
     </button>
   </div>
   <div class="navbar-start md:hidden">
-    <button class="btn btn-ghost btn-circle">
+    <button
+      class="btn btn-ghost btn-circle"
+      on:click={() => sidebarDrawer.set(!$sidebarDrawer)}
+    >
       <Menu size={24} />
     </button>
   </div>
   <div class="navbar-center md:hidden">
     <button
       class="px-3 text-2xl font-bold cursor-pointer"
-      on:click={() => goto("/")}
+      on:click={async () => {
+        await closeEditor();
+        goto("/");
+      }}
     >
       {import.meta.env.VITE_APP_NAME}
     </button>
@@ -98,11 +106,13 @@
 <dialog id="edit_profile" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box">
     <h3 class="text-lg font-bold">Edit Profile</h3>
-    <div class="mx-auto bg-white w-36 rounded-full overflow-hidden">
+    <div
+      class="mx-auto bg-white w-36 rounded-full overflow-hidden border-2 border-gray-200"
+    >
       <img src="https://gravatar.com/avatar/{$page.data.hashed_email}?s=150" />
     </div>
     <p class="my-3 text-center text-gray-500">
-      You can change the picture at
+      You can change the picture on
       <a href="https://gravatar.com/" class="link" target="_blank">Gravatar</a>
     </p>
     <div class="flex flex-col gap-2">

@@ -2,6 +2,8 @@
   import { goto } from "$app/navigation";
   import { X, Search, Plus } from "lucide-svelte";
 
+  import { sidebarDrawer } from "$lib/stores/sidebarDrawer";
+
   export let contents;
   export let activeEnv;
   export let search;
@@ -19,9 +21,13 @@
   }
 </script>
 
-<aside class="flex flex-col lg:py-3 bg-white w-[280px]">
+<aside
+  class="{$sidebarDrawer
+    ? 'active'
+    : 'left-0'} flex flex-col md:py-3 bg-white md:w-[280px] fixed md:static top-[100] left-0 transition-transform duration-300 ease-in-out z-[100] shadow-xl"
+>
   <div
-    class="lg:card flex flex-col gap-2 py-3 bg-primary/15 w-full min-h-full overflow-y-auto"
+    class="md:card flex flex-col gap-2 py-3 bg-primary/15 w-full min-h-full overflow-y-auto"
   >
     <div class="flex gap-1 mx-2">
       <label class="input input-bordered input-sm flex items-center gap-2">
@@ -81,8 +87,26 @@
 </aside>
 
 <style>
+  aside {
+    translate: -100% 0;
+  }
+
+  aside.active {
+    translate: 0 0;
+  }
+
   .env-list {
     max-height: calc(100vh - 145px) !important;
+  }
+
+  @media (width >= 48rem) {
+    aside {
+      translate: 0 0;
+    }
+
+    .env-list {
+      max-height: calc(100vh - 170px) !important;
+    }
   }
 
   @media (width >= 64rem) {

@@ -95,7 +95,7 @@
       Last saved at {datePrettier(contents?.timestamp)}
     </p>
     <textarea
-      class="card flex-1 px-4 py-3 bg-[#272822] text-white w-full resize-none shadow"
+      class="card flex-1 px-4 py-3 bg-[#272822] text-white w-full resize-none shadow-xl"
       spellcheck="false"
       bind:value={contents.content}
     ></textarea>
