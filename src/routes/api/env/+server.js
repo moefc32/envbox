@@ -41,9 +41,12 @@ export async function POST({ request }) {
     } = await request.json() || {};
 
     try {
+        const trimmedContent = trimText(content);
         const result = await model.createData({
             title: trimText(title),
-            content: trimText(content) + '\n'
+            content: trimmedContent === ''
+                ? trimmedContent
+                : trimmedContent + '\n'
         });
 
         return json({
@@ -71,10 +74,13 @@ export async function PATCH({ url, request }) {
     } = await request.json() || {};
 
     try {
+        const trimmedContent = trimText(content);
         const result = await model.editData({
             title: trimText(title),
-            content: trimText(content) + '\n'
-        }, id);
+            content: trimmedContent === ''
+                ? trimmedContent
+                : trimmedContent + '\n'
+        });
 
         return json({
             application: VITE_APP_NAME,

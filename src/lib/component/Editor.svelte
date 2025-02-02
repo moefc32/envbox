@@ -1,5 +1,6 @@
 <script>
-  import { Check, X } from "lucide-svelte";
+  import { goto } from "$app/navigation";
+  import { ArrowLeft, Check, X } from "lucide-svelte";
   import datePrettier from "$lib/datePrettier";
 
   import { initialValues } from "$lib/stores/initialValues";
@@ -62,14 +63,26 @@
 
 {#if contents?.id || contents?.is_new}
   <main class="flex flex-1 flex-col gap-3 mt-2 mb-6 py-3">
-    <input
-      type="text"
-      class="input input-bordered input-lg text-xl px-4 w-full"
-      placeholder={contents?.is_new
-        ? "New environment title"
-        : "Environment title"}
-      bind:value={contents.title}
-    />
+    <div class="flex items-center gap-2">
+      <button
+        class="cursor-pointer"
+        title="Back to dashboard"
+        on:click={async () => {
+          await closeEditor();
+          goto("/");
+        }}
+      >
+        <ArrowLeft size={30} />
+      </button>
+      <input
+        type="text"
+        class="input input-bordered input-lg text-xl px-4 w-full"
+        placeholder={contents?.is_new
+          ? "New environment title"
+          : "Environment title"}
+        bind:value={contents.title}
+      />
+    </div>
     <p class="text-gray-500 text-xs">
       Last saved at {datePrettier(contents?.timestamp)}
     </p>
@@ -101,7 +114,7 @@
         <button
           class="btn btn-outline btn-error"
           title="Cancel create new environment"
-          on:click={() => (contents.is_new = false)}
+          on:click={() => delete contents.is_new}
         >
           <X size={16} /> Cancel
         </button>

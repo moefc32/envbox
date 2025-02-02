@@ -60,7 +60,7 @@
       </button>
     </div>
     <hr class="mx-2 my-1" />
-    <div class="flex-1 mx-2 max-h-[70vh] overflow-y-auto">
+    <div class="env-list flex-1 mx-2 overflow-y-auto">
       {#each search.keyword ? search.results : contents as item, i}
         <button
           class="card mb-1 px-4 py-3 {activeEnv === item.id
@@ -79,3 +79,15 @@
     </div>
   </div>
 </aside>
+
+<style>
+  .env-list {
+    max-height: calc(100vh - 145px) !important;
+  }
+
+  @media (width >= 64rem) {
+    .env-list {
+      max-height: calc(100vh - 195px) !important;
+    }
+  }
+</style>
