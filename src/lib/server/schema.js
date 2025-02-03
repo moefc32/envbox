@@ -12,8 +12,8 @@ export async function schema() {
             title TEXT NOT NULL,
             content TEXT,
             timestamp INTEGER NOT NULL DEFAULT (unixepoch())
-        );
-    `];
+        );`,
+    ];
 
     for (const query of queries) {
         sqlite(query);

@@ -7,9 +7,9 @@ export default {
         try {
             const search = `%${keyword}%`;
 
-            const result = await sqlite(`
-                SELECT * FROM ${TABLE_ENV} 
-                WHERE LOWER(title) LIKE LOWER(?) 
+            const result = sqlite(`
+                SELECT * FROM ${TABLE_ENV}
+                WHERE LOWER(title) LIKE LOWER(?)
                 OR LOWER(content) LIKE LOWER(?);
             `, [search, search]);
 
