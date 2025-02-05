@@ -11,7 +11,7 @@ Envbox is a SvelteKit application to store .env configurations
 
 ## Stack Used
 
-- [SvelteKit](https://kit.svelte.dev)
-- [Tailwind](https://tailwindcss.com)
+- [SvelteKit](https://svelte.dev/)
+- [Tailwind](https://tailwindcss.com/)
 - [daisyUI](https://daisyui.com/)
 - [SQLite](https://www.sqlite.org/)
