@@ -8,7 +8,12 @@ export default {
             const search = `%${keyword}%`;
 
             const result = sqlite(`
-                SELECT * FROM ${TABLE_ENV}
+                SELECT
+                    id,
+                    title,
+                    content,
+                    timestamp
+                FROM ${TABLE_ENV}
                 WHERE LOWER(title) LIKE LOWER(?)
                 OR LOWER(content) LIKE LOWER(?);
             `, [search, search]);
