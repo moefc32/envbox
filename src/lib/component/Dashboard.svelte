@@ -31,7 +31,7 @@
       class="card flex justify-center gap-3 p-6 bg-secondary/15 w-full lg:w-2/5 h-30 shadow-lg"
     >
       <FileCog size={40} class={"text-secondary"} />
-      <span class="text-xl text-gray-700 font-bold">
+      <span class="text-lg text-gray-700 font-bold">
         {contents?.all_contents?.length}
         {contents?.all_contents?.length > 1 ? "Environments" : "Environment"}
       </span>
@@ -40,10 +40,10 @@
       class="card flex justify-center gap-3 p-6 bg-accent/20 w-full lg:w-3/5 h-30 shadow-lg"
     >
       <CalendarClock size={40} class={"text-accent"} />
-      <span class="text-xl text-gray-700 font-bold md:hidden">
+      <span class="text-lg text-gray-700 font-bold md:hidden">
         {currentTime.short}
       </span>
-      <span class="text-xl text-gray-700 font-bold hidden md:inline">
+      <span class="text-lg text-gray-700 font-bold hidden md:inline">
         {currentTime.long}
       </span>
     </div>
