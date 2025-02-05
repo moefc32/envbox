@@ -11,7 +11,7 @@ export async function schema() {
             id TEXT PRIMARY KEY NOT NULL,
             title TEXT NOT NULL,
             content TEXT,
-            timestamp INTEGER NOT NULL DEFAULT (unixepoch())
+            timestamp INTEGER NOT NULL
         );`,
     ];
 

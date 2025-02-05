@@ -9,9 +9,8 @@ export async function load({ cookies, url }) {
     const decoded_token = await decodeToken(access_token);
     const isUserPresent = await modelAuth.getData(decoded_token?.id);
 
-    if (!access_token)
+    if (!decoded_token)
         return {
-            access_token,
             is_registered: !!isUserPresent,
         };
 

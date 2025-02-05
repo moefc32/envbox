@@ -28,7 +28,7 @@
   {/if}
   <input
     type="email"
-    class="input input-bordered w-full max-w-xs"
+    class="input input-bordered w-full"
     placeholder="Email"
     bind:value={login.email}
     on:keydown={handleKeydown}
