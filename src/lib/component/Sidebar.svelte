@@ -30,7 +30,7 @@
     class="md:card flex flex-col gap-2 py-3 bg-primary/15 w-full min-h-full overflow-y-auto"
   >
     <div class="flex gap-1 mx-2">
-      <label class="input input-bordered input-sm flex items-center gap-2">
+      <label class="input input-bordered input-sm flex items-center gap-2 w-full">
         <input
           type="text"
           class="grow"

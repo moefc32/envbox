@@ -122,7 +122,7 @@
         placeholder="Type to update email"
         bind:value={profile.email}
       />
-      <label class="input input-bordered w-full flex items-center gap-2">
+      <label class="input input-bordered flex items-center gap-2 w-full">
         {#if !showPassword}
           <input
             type="password"

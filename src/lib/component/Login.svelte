@@ -33,7 +33,7 @@
     bind:value={login.email}
     on:keydown={handleKeydown}
   />
-  <label class="input input-bordered flex items-center gap-2">
+  <label class="input input-bordered flex items-center gap-2 w-full">
     {#if !showPassword}
       <input
         type="password"
