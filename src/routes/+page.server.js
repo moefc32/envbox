@@ -1,12 +1,12 @@
 import { createHash } from "crypto";
-import { decodeToken } from '$lib/server/token';
+import decodeToken from '$lib/server/token';
 import modelAuth from '$lib/server/model/auth';
 import modelEnv from '$lib/server/model/env';
 
 export async function load({ cookies, url }) {
     const env = url.searchParams.get('env');
     const access_token = await cookies.get('access_token');
-    const decoded_token = await decodeToken(access_token);
+    const decoded_token = decodeToken(access_token);
     const isUserPresent = await modelAuth.getData(decoded_token?.id);
 
     if (!decoded_token)
