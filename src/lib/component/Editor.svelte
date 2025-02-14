@@ -1,6 +1,6 @@
 <script>
   import { goto } from "$app/navigation";
-  import { ArrowLeft, Check, X } from "lucide-svelte";
+  import { ArrowLeft, Check, Trash2, X } from "lucide-svelte";
   import { toast } from "svoast";
   import datePrettier from "$lib/datePrettier";
 
@@ -116,7 +116,7 @@
           title="Delete this environment"
           on:click={() => env_delete.showModal()}
         >
-          <X size={16} /> Delete
+          <Trash2 size={16} /> Delete
         </button>
       {:else}
         <button
