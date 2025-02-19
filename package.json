@@ -28,7 +28,7 @@
         "dotenv": "^16.4.7",
         "jsonwebtoken": "^9.0.2",
         "lucide-svelte": "^0.474.0",
-        "uuid": "^11.0.5"
+        "uuid": "^11.1.0"
     },
     "pnpm": {
         "onlyBuiltDependencies": [
