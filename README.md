@@ -1,4 +1,12 @@
 # Envbox
+<a href="https://opensource.org/license/mit">
+    <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" height="24" />
+</a>
+<a href="https://pnpm.io/">
+    <img src="https://img.shields.io/badge/Package-PNPM-orange?style=flat-square" height="24" />
+</a>
+<br /><br />
+
 Envbox is a SvelteKit application to store .env configurations
 
 ![image](https://github.com/user-attachments/assets/d097051c-5be8-4dde-becc-0082199dc82b)
