@@ -1,5 +1,5 @@
 import { VITE_APP_NAME } from '$env/static/private';
-import { json, redirect } from '@sveltejs/kit';
+import { json } from '@sveltejs/kit';
 import { validateToken } from '$lib/server/token';
 import { checkIsUserExists } from '$lib/server/sqlite';
 import setSchema from '$lib/server/schema';
