@@ -99,7 +99,7 @@
     }
 
     .env-list {
-        max-height: calc(100vh - 145px) !important;
+        max-height: calc(100dvh - 145px) !important;
     }
 
     @media (width >= 48rem) {
@@ -108,13 +108,13 @@
         }
 
         .env-list {
-            max-height: calc(100vh - 170px) !important;
+            max-height: calc(100dvh - 170px) !important;
         }
     }
 
     @media (width >= 64rem) {
         .env-list {
-            max-height: calc(100vh - 195px) !important;
+            max-height: calc(100dvh - 195px) !important;
         }
     }
 </style>
