@@ -1,8 +1,11 @@
-@import "tailwindcss";
-@plugin "daisyui";
+@import 'tailwindcss';
 
-@import "@fontsource/plus-jakarta-sans";
-@import "@fontsource/source-code-pro";
+@plugin 'daisyui' {
+    exclude: rootscrollgutter;
+}
+
+@import '@fontsource/plus-jakarta-sans';
+@import '@fontsource/source-code-pro';
 
 input::-ms-reveal,
 input::-ms-clear {
