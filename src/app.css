@@ -4,8 +4,8 @@
     exclude: rootscrollgutter;
 }
 
-@import '@fontsource/plus-jakarta-sans';
-@import '@fontsource/source-code-pro';
+@import '@fontsource-variable/plus-jakarta-sans';
+@import '@fontsource-variable/source-code-pro';
 
 input::-ms-reveal,
 input::-ms-clear {
