@@ -3,8 +3,8 @@
     import { toast } from 'svoast';
     import isValidEmail from '$lib/isValidEmail';
 
-    import { sidebarDrawer } from '$lib/stores/sidebarDrawer';
-    import { initialValues } from '$lib/stores/initialValues';
+    import sidebarDrawer from '$lib/stores/sidebarDrawer';
+    import initialValues from '$lib/stores/initialValues';
 
     import Login from '$lib/component/Login.svelte';
     import Header from '$lib/component/Header.svelte';

@@ -2,7 +2,7 @@
     import { goto } from '$app/navigation';
     import { X, Search, Plus } from 'lucide-svelte';
 
-    import { sidebarDrawer } from '$lib/stores/sidebarDrawer';
+    import sidebarDrawer from '$lib/stores/sidebarDrawer';
 
     export let contents;
     export let activeEnv;

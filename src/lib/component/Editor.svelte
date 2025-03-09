@@ -4,7 +4,7 @@
     import { toast } from 'svoast';
     import datePrettier from '$lib/datePrettier';
 
-    import { initialValues } from '$lib/stores/initialValues';
+    import initialValues from '$lib/stores/initialValues';
 
     export let contents;
     export let closeEditor;

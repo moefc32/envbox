@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-export const initialValues = writable({
+export default writable({
     title: '',
     content: '',
 });

@@ -5,7 +5,7 @@
     import { toast } from 'svoast';
     import isValidEmail from '$lib/isValidEmail';
 
-    import { sidebarDrawer } from '$lib/stores/sidebarDrawer';
+    import sidebarDrawer from '$lib/stores/sidebarDrawer';
 
     export let closeEditor;
     export let doLogout;
