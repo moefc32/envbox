@@ -1,4 +1,4 @@
-import { createHash } from "crypto";
+import { createHash } from 'crypto';
 import decodeToken from '$lib/server/token';
 import modelAuth from '$lib/server/model/auth';
 import modelEnv from '$lib/server/model/env';
@@ -15,9 +15,9 @@ export async function load({ cookies, url }) {
         };
 
     const hashed_email = !!isUserPresent
-        ? createHash("sha256")
+        ? createHash('sha256')
             .update(isUserPresent?.email)
-            .digest("hex")
+            .digest('hex')
         : null;
 
     const all_contents = await modelEnv.getData();
