@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { init as cuid2 } from '@paralleldrive/cuid2';
 import sqlite from '../sqlite';
 import { TABLE_ENV } from './tables';
 
@@ -53,7 +53,7 @@ export default {
     createData: async (data) => {
         try {
             const timestamp = Date.now();
-            const id = uuidv4();
+            const cuid = cuid2({ length: 12 })();
 
             const result = sqlite(`
                 INSERT INTO ${TABLE_ENV} (
@@ -63,7 +63,7 @@ export default {
                     timestamp
                 ) VALUES (?, ?, ?, ?);
             `, [
-                id,
+                cuid,
                 data.title,
                 data.content,
                 timestamp
@@ -71,7 +71,7 @@ export default {
 
             return {
                 column: {
-                    id,
+                    id: cuid,
                     title: data.title,
                     content: data.content,
                     timestamp,

@@ -23,12 +23,12 @@
     "dependencies": {
         "@fontsource-variable/plus-jakarta-sans": "^5.2.5",
         "@fontsource-variable/source-code-pro": "^5.2.5",
+        "@paralleldrive/cuid2": "^2.2.2",
         "bcrypt": "^5.1.1",
         "better-sqlite3": "^11.9.1",
         "dotenv": "^16.4.7",
         "jsonwebtoken": "^9.0.2",
-        "lucide-svelte": "^0.474.0",
-        "uuid": "^11.1.0"
+        "lucide-svelte": "^0.474.0"
     },
     "pnpm": {
         "onlyBuiltDependencies": [
