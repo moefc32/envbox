@@ -10,12 +10,12 @@
         "prepare": "svelte-kit sync || echo ''"
     },
     "devDependencies": {
-        "@sveltejs/adapter-node": "^5.5.2",
-        "@sveltejs/kit": "^2.50.2",
+        "@sveltejs/adapter-node": "^5.5.3",
+        "@sveltejs/kit": "^2.51.0",
         "@sveltejs/vite-plugin-svelte": "^5.1.1",
         "@tailwindcss/vite": "^4.1.18",
-        "daisyui": "5.0.0",
-        "svelte": "^5.50.1",
+        "daisyui": "5.5.18",
+        "svelte": "^5.50.3",
         "svoast": "^3.0.3",
         "tailwindcss": "^4.1.18",
         "vite": "^6.4.1"
@@ -28,7 +28,7 @@
         "better-sqlite3": "^11.10.0",
         "dotenv": "^16.6.1",
         "jsonwebtoken": "^9.0.3",
-        "lucide-svelte": "^0.474.0"
+        "lucide-svelte": "^0.563.0"
     },
     "pnpm": {
         "onlyBuiltDependencies": [
