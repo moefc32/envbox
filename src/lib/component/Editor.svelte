@@ -77,7 +77,7 @@
                 title="Back to dashboard"
                 on:click={async () => {
                     await closeEditor();
-                    goto('/');
+                    goto('/', { invalidateAll: true });
                 }}
             >
                 <ArrowLeft size={30} />

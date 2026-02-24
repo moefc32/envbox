@@ -41,7 +41,7 @@
             });
 
             if (!response.ok) throw new Error();
-            window.location.href = '/';
+            window.location.assign('/');
         } catch (e) {
             login.loading = false;
 
@@ -62,7 +62,7 @@
             });
 
             if (!response.ok) throw new Error();
-            window.location.href = '/';
+            window.location.assign('/');
         } catch (e) {
             console.error(e);
             toast.error('Logout failed, please try again!');

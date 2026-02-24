@@ -1,5 +1,4 @@
 <script>
-    import { goto } from '$app/navigation';
     import { X, Search, Plus } from 'lucide-svelte';
 
     import sidebarDrawer from '$lib/stores/sidebarDrawer';

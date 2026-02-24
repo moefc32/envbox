@@ -30,8 +30,10 @@
 
             if (!response.ok) throw new Error();
 
+            profile.password = '';
+
             toast.success('Profile info updated successfully.');
-            setTimeout(() => (window.location.href = '/'), 500);
+            goto('/', { invalidateAll: true });
         } catch (e) {
             console.error(e);
             toast.error('Update profile info failed, please try again!');
@@ -47,7 +49,7 @@
             class="px-3 text-2xl font-bold cursor-pointer"
             on:click={async () => {
                 await closeEditor();
-                goto('/');
+                goto('/', { invalidateAll: true });
             }}
         >
             {import.meta.env.VITE_APP_NAME}
@@ -66,7 +68,7 @@
             class="px-3 text-2xl font-bold cursor-pointer"
             on:click={async () => {
                 await closeEditor();
-                goto('/');
+                goto('/', { invalidateAll: true });
             }}
         >
             {import.meta.env.VITE_APP_NAME}
