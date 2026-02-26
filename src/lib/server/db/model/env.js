@@ -36,6 +36,7 @@ export default {
                     .select({
                         id: env.id,
                         title: env.title,
+                        timestamp: env.timestamp,
                     })
                     .from(env)
                     .orderBy(desc(env.timestamp))

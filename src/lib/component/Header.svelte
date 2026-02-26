@@ -1,7 +1,7 @@
 <script>
     import { page } from '$app/stores';
     import { goto } from '$app/navigation';
-    import { Menu, ChevronDown, Eye, EyeOff } from 'lucide-svelte';
+    import { Menu, X, ChevronDown, Eye, EyeOff } from 'lucide-svelte';
     import { toast } from 'svoast';
     import isValidEmail from '$lib/isValidEmail';
 
@@ -67,7 +67,11 @@
             class="btn btn-ghost btn-circle"
             on:click={() => sidebarDrawer.set(!$sidebarDrawer)}
         >
-            <Menu size={24} />
+            {#if !!$sidebarDrawer}
+                <X size={24} />
+            {:else}
+                <Menu size={24} />
+            {/if}
         </button>
     </div>
     <div class="navbar-center md:hidden">

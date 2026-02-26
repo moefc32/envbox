@@ -9,5 +9,9 @@
     </title>
 </svelte:head>
 
-<slot />
-<Toasts position={'bottom-center'} />
+<div
+    class="flex flex-col justify-center items-center bg-teal-100 w-full h-screen"
+>
+    <slot />
+    <Toasts position={'bottom-center'} />
+</div>

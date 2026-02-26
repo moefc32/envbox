@@ -22,7 +22,8 @@ textarea {
     font-family: 'Source Code Pro Variable', monospace;
 }
 
-.btn-error:not(.btn-outline) {
+.btn-error:not(.btn-outline),
+.btn-error:focus {
     @apply text-white;
 }
 

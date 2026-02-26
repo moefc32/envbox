@@ -1,5 +1,5 @@
 <script>
-    import { X, Search, Plus } from 'lucide-svelte';
+    import { X, Search, Plus, FileSearchCorner, File } from 'lucide-svelte';
 
     import sidebarDrawer from '$lib/stores/sidebarDrawer';
 
@@ -23,12 +23,12 @@
 <aside
     class="{$sidebarDrawer
         ? 'active'
-        : 'left-0'} flex flex-col md:py-3 bg-white md:w-[280px] fixed md:static top-[100] left-0 transition-transform duration-300 ease-in-out z-[100] shadow-xl"
+        : 'left-0'} flex flex-col md:py-4 bg-white w-[280px] fixed md:static top-[100] left-0 transition-transform duration-300 ease-in-out h-[calc(100%-64px)] md:h-auto z-[100] shadow-xl md:shadow-none"
 >
     <div
-        class="md:card flex flex-col gap-2 py-3 bg-primary/15 w-full min-h-full overflow-y-auto"
+        class="md:card flex flex-col gap-2 py-3 bg-primary/15 border-[1px] border-primary/20 w-full min-h-full overflow-y-auto"
     >
-        <div class="flex gap-1 mx-2">
+        <div class="flex gap-1 mx-2 pb-2 border-primary/50 border-b-[1px]">
             <label
                 class="input input-bordered input-sm flex items-center gap-2 w-full"
             >
@@ -67,23 +67,38 @@
                 <Plus size={16} /> New
             </button>
         </div>
-        <hr class="mx-2 my-1" />
         <div class="env-list flex-1 mx-2 overflow-y-auto">
-            {#each search.keyword ? search.results : contents as item, i}
-                <button
-                    class="card mb-1 px-4 py-3 {activeEnv === item.id
-                        ? 'bg-primary/75'
-                        : 'bg-primary/55'} text-white text-left w-full cursor-pointer"
-                    on:click={() => openEnv(item.id)}
+            {#if search.keyword && !search.results.length}
+                <div
+                    class="flex flex-col gap-1 justify-center items-center w-full h-full"
                 >
-                    <span
-                        class="truncate block whitespace-nowrap w-full"
-                        title={item.title}
+                    <FileSearchCorner size={64} class={'text-primary/50'} />
+                    <span class="text-primary/50">Environment not found</span>
+                </div>
+            {:else if !contents.length}
+                <div
+                    class="flex flex-col gap-1 justify-center items-center w-full h-full"
+                >
+                    <File size={64} class={'text-primary/50'} />
+                    <span class="text-primary/50">No environment yet</span>
+                </div>
+            {:else}
+                {#each search.keyword ? search.results : contents as item, i}
+                    <button
+                        class="card mb-1 px-4 py-3 {activeEnv === item.id
+                            ? 'bg-primary/75'
+                            : 'bg-primary/55'} text-white text-left w-full cursor-pointer"
+                        on:click={() => openEnv(item.id)}
                     >
-                        {item.title}
-                    </span>
-                </button>
-            {/each}
+                        <span
+                            class="truncate block whitespace-nowrap w-full"
+                            title={item.title}
+                        >
+                            {item.title}
+                        </span>
+                    </button>
+                {/each}
+            {/if}
         </div>
     </div>
 </aside>

@@ -60,8 +60,8 @@
             if (!response.ok) throw new Error();
 
             toast.success('Environment deleted successfully.');
-            await closeEditor();
             await reloadEnvList();
+            await closeEditor();
         } catch (e) {
             console.error(e);
             toast.error('Delete environment failed, please try again!');
@@ -71,17 +71,28 @@
 
 {#if contents?.id || contents?.is_new}
     <main class="flex flex-1 flex-col gap-3 mt-2 mb-6 py-3">
-        <div class="flex items-center gap-2">
+        <div class="flex gap-3">
             <button
-                class="cursor-pointer"
+                class="btn btn-sm"
                 title="Back to dashboard"
                 on:click={async () => {
                     await closeEditor();
                     goto('/', { invalidateAll: true });
                 }}
             >
-                <ArrowLeft size={30} />
+                <ArrowLeft size={16} /> Back
             </button>
+            {#if contents?.id}
+                <button
+                    class="btn btn-outline btn-error btn-sm ms-auto"
+                    title="Delete this environment"
+                    on:click={() => env_delete.showModal()}
+                >
+                    <Trash2 size={16} /> Delete
+                </button>
+            {/if}
+        </div>
+        <div class="flex items-center gap-2">
             <input
                 type="text"
                 class="input input-bordered input-lg text-xl px-4 w-full"
@@ -91,15 +102,12 @@
                 bind:value={contents.title}
             />
         </div>
-        <p class="text-gray-500 text-xs">
-            Last saved at {datePrettier(contents?.timestamp)}
-        </p>
         <textarea
             class="card flex-1 px-4 py-3 bg-[#272822] text-white w-full resize-none shadow-xl"
             spellcheck="false"
             bind:value={contents.content}
         ></textarea>
-        <div class="flex gap-1">
+        <div class="flex flex-col-reverse sm:flex-row gap-3">
             <button
                 class="btn btn-success me-auto"
                 title="Save this environment"
@@ -110,25 +118,10 @@
             >
                 <Check size={16} /> Save
             </button>
-            {#if contents?.id}
-                <button
-                    class="btn btn-outline btn-error"
-                    title="Delete this environment"
-                    on:click={() => env_delete.showModal()}
-                >
-                    <Trash2 size={16} /> Delete
-                </button>
-            {:else}
-                <button
-                    class="btn btn-outline btn-error"
-                    title="Cancel create new environment"
-                    on:click={async () => {
-                        await closeEditor();
-                        goto('/', { invalidateAll: true });
-                    }}
-                >
-                    <X size={16} /> Cancel
-                </button>
+            {#if contents?.timestamp}
+                <p class="text-gray-500 text-xs">
+                    Last saved at {datePrettier(contents?.timestamp)}
+                </p>
             {/if}
         </div>
     </main>
