@@ -16,6 +16,13 @@
     };
     let showPassword = false;
 
+    async function handleKeydown(event) {
+        if (event.key === 'Enter' && isValidEmail(profile.email)) {
+            updateProfile();
+            edit_profile.close();
+        }
+    }
+
     async function updateProfile() {
         try {
             if (!isValidEmail(profile.email)) throw new Error();
@@ -94,9 +101,9 @@
                 class="menu menu-sm dropdown-content mt-3 p-2 bg-base-100 text-black w-32 rounded-box z-[1] shadow-lg"
             >
                 <li>
-                    <button on:click={() => edit_profile.showModal()}
-                        >Edit Profile</button
-                    >
+                    <button on:click={() => edit_profile.showModal()}>
+                        Edit Profile
+                    </button>
                 </li>
                 <li>
                     <button on:click={() => doLogout()}>Logout</button>
@@ -120,9 +127,9 @@
         </div>
         <p class="my-3 text-center text-gray-500">
             You can change the picture on
-            <a href="https://gravatar.com/" class="link" target="_blank"
-                >Gravatar</a
-            >
+            <a href="https://gravatar.com/" class="link" target="_blank">
+                Gravatar
+            </a>
         </p>
         <div class="flex flex-col gap-2">
             <input
@@ -130,6 +137,7 @@
                 class="input input-bordered w-full"
                 placeholder="Type to update email"
                 bind:value={profile.email}
+                on:keydown={handleKeydown}
             />
             <label class="input input-bordered flex items-center gap-2 w-full">
                 {#if !showPassword}
@@ -138,6 +146,7 @@
                         class="grow"
                         placeholder="Type to update password"
                         bind:value={profile.password}
+                        on:keydown={handleKeydown}
                     />
                     <button
                         class="-ms-8 text-black z-[100] cursor-pointer"
@@ -152,6 +161,7 @@
                         class="grow"
                         placeholder="Type to update password"
                         bind:value={profile.password}
+                        on:keydown={handleKeydown}
                     />
                     <button
                         class="-ms-8 text-black z-[100] cursor-pointer"

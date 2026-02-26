@@ -1,35 +1,45 @@
-import { VITE_APP_NAME } from '$env/static/private';
-import { json } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 import { validateToken } from '$lib/server/token';
-import { checkIsUserExists } from '$lib/server/sqlite';
-import setSchema from '$lib/server/schema';
+import model from '$lib/server/db/model/auth';
+import setSchema from '$lib/server/db/init';
 
 setSchema();
+
+const UNAUTH_ROUTES = ['/login'];
+const INIT_ROUTE = '/init';
 
 export const handle = async ({ event, resolve }) => {
     const { cookies, url } = event;
     const currentPath = url.pathname;
 
-    const publicPaths = ['/api', '/api/auth'];
-    if (
-        currentPath === '/' ||
-        publicPaths.some(path => currentPath.startsWith(path))
-    ) {
-        return resolve(event);
-    }
-
     const isTokenValid = validateToken(cookies);
-    const isUserExists = isTokenValid
-        && checkIsUserExists(isTokenValid.id);
+    const isUserExists = await model.getData(isTokenValid?.id);
+    const isAuthenticated = !!(isTokenValid && isUserExists);
 
     if (!isTokenValid || !isUserExists) {
         cookies.delete('access_token', { path: '/' });
     }
 
-    return json({
-        application: VITE_APP_NAME,
-        message: 'Unauthorized access, please login!',
-    }, {
-        status: 401,
-    });
-}
+    if (isUserExists === false) {
+        const isApiRoute = currentPath.startsWith('/api');
+        const isInitRoute = currentPath === INIT_ROUTE;
+
+        if (!isApiRoute && !isInitRoute) {
+            throw redirect(303, INIT_ROUTE);
+        }
+
+        return resolve(event);
+    }
+
+    const isUnauthRoute = UNAUTH_ROUTES.includes(currentPath);
+
+    if (isAuthenticated && isUnauthRoute) {
+        throw redirect(303, '/');
+    }
+
+    if (!isAuthenticated && currentPath === '/') {
+        throw redirect(303, '/login');
+    }
+
+    return resolve(event);
+};

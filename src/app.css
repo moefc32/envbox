@@ -21,3 +21,11 @@ body {
 textarea {
     font-family: 'Source Code Pro Variable', monospace;
 }
+
+.btn-error:not(.btn-outline) {
+    @apply text-white;
+}
+
+.btn-outline:hover {
+    @apply text-white;
+}

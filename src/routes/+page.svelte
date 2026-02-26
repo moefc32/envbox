@@ -1,12 +1,11 @@
 <script>
-    import { page } from '$app/stores';
+    import { goto } from '$app/navigation';
     import { toast } from 'svoast';
     import isValidEmail from '$lib/isValidEmail';
 
     import sidebarDrawer from '$lib/stores/sidebarDrawer';
     import initialValues from '$lib/stores/initialValues';
 
-    import Login from '$lib/component/Login.svelte';
     import Header from '$lib/component/Header.svelte';
     import Sidebar from '$lib/component/Sidebar.svelte';
     import Dashboard from '$lib/component/Dashboard.svelte';
@@ -16,41 +15,11 @@
 
     let { contents } = data;
 
-    let login = {
-        email: '',
-        password: '',
-        loading: false,
-    };
     let search = {
         keyword: '',
         loading: false,
         results: [],
     };
-
-    async function loginFormAction() {
-        try {
-            login.loading = true;
-            if (!isValidEmail(login.email)) throw new Error();
-
-            const response = await fetch('/api/auth', {
-                method: $page.data.is_registered ? 'POST' : 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(login),
-            });
-
-            if (!response.ok) throw new Error();
-            window.location.assign('/');
-        } catch (e) {
-            login.loading = false;
-
-            console.error(e);
-            toast.error(
-                `${$page.data.is_registered ? 'Login' : 'Register'} failed, please check all data and try again!`,
-            );
-        }
-    }
 
     async function doLogout() {
         try {
@@ -62,7 +31,9 @@
             });
 
             if (!response.ok) throw new Error();
-            window.location.assign('/');
+
+            toast.success('You are now logged out.');
+            goto('/login', { invalidateAll: true });
         } catch (e) {
             console.error(e);
             toast.error('Logout failed, please try again!');
@@ -152,27 +123,23 @@
     }
 </script>
 
-{#if !$page.data.access_token}
-    <Login {login} {loginFormAction} />
-{:else}
-    <main
-        class="card flex flex-1 lg:m-3 bg-white w-full max-w-screen-lg shadow-2xl overflow-hidden"
-    >
-        <Header {closeEditor} {doLogout} />
-        <div class="flex flex-1 justify-stretch items-stretch gap-4 px-4">
-            <Sidebar
-                contents={contents?.all_contents}
-                activeEnv={contents?.opened_contents?.id}
-                {search}
-                {doSearch}
-                {openEnv}
-            />
-            <Dashboard {contents} />
-            <Editor
-                contents={contents?.opened_contents}
-                {closeEditor}
-                {reloadEnvList}
-            />
-        </div>
-    </main>
-{/if}
+<main
+    class="card flex flex-1 lg:m-3 bg-white w-full max-w-screen-lg shadow-2xl overflow-hidden"
+>
+    <Header {closeEditor} {doLogout} />
+    <div class="flex flex-1 justify-stretch items-stretch gap-4 px-4">
+        <Sidebar
+            contents={contents?.all_contents}
+            activeEnv={contents?.opened_contents?.id}
+            {search}
+            {doSearch}
+            {openEnv}
+        />
+        <Dashboard {contents} />
+        <Editor
+            contents={contents?.opened_contents}
+            {closeEditor}
+            {reloadEnvList}
+        />
+    </div>
+</main>

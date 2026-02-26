@@ -122,7 +122,10 @@
                 <button
                     class="btn btn-outline btn-error"
                     title="Cancel create new environment"
-                    on:click={() => delete contents.is_new}
+                    on:click={async () => {
+                        await closeEditor();
+                        goto('/', { invalidateAll: true });
+                    }}
                 >
                     <X size={16} /> Cancel
                 </button>

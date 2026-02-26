@@ -5,20 +5,20 @@
 
     export let contents;
 
-    let currentTime = {
-        long: 'Loading time...',
-        short: 'Loading time...',
-    };
+    let currentTime;
+
+    function updateClock() {
+        const now = Date.now();
+        currentTime = {
+            long: datePrettier(now, true),
+            short: datePrettier(now, false),
+        };
+    }
+
+    updateClock();
 
     onMount(() => {
-        function updateClock() {
-            currentTime.long = datePrettier(Date.now(), true);
-            currentTime.short = datePrettier(Date.now(), false);
-        }
-
-        updateClock();
-        const interval = setInterval(updateClock, 1000);
-
+        const interval = setInterval(() => updateClock(), 1000);
         return () => clearInterval(interval);
     });
 </script>

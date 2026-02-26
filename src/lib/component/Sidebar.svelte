@@ -49,8 +49,8 @@
                         }}
                     >
                         {#if search.loading}
-                            <span class="loading loading-spinner loading-xs"
-                            ></span>
+                            <span class="loading loading-spinner loading-xs">
+                            </span>
                         {:else}
                             <X size={16} />
                         {/if}

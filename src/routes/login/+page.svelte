@@ -1,16 +1,44 @@
 <script>
-    import { page } from '$app/stores';
+    import { goto } from '$app/navigation';
     import { Eye, EyeOff, LogIn, Check } from 'lucide-svelte';
+    import { toast } from 'svoast';
     import isValidEmail from '$lib/isValidEmail';
 
-    export let login;
-    export let loginFormAction;
-
+    let login = {
+        email: '',
+        password: '',
+        loading: false,
+    };
     let showPassword = false;
 
     async function handleKeydown(event) {
         if (event.key === 'Enter' && login.email && login.password) {
-            loginFormAction();
+            doLogin();
+        }
+    }
+
+    async function doLogin() {
+        try {
+            login.loading = true;
+            if (!isValidEmail(login.email)) throw new Error();
+
+            const response = await fetch('/api/auth', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(login),
+            });
+
+            if (!response.ok) throw new Error();
+
+            toast.success('You have successfully logged in.');
+            goto('/', { invalidateAll: true });
+        } catch (e) {
+            login.loading = false;
+
+            console.error(e);
+            toast.error('Login failed, please check all data and try again!');
         }
     }
 </script>
@@ -18,18 +46,9 @@
 <main
     class="card flex flex-col gap-2 my-auto p-6 bg-white w-full max-w-[320px] shadow-2xl"
 >
-    {#if $page.data.is_registered}
-        <h1 class="my-2 text-3xl text-center">
-            {import.meta.env.VITE_APP_NAME}
-        </h1>
-    {:else}
-        <h1 class="mt-2 text-3xl text-center">
-            {import.meta.env.VITE_APP_NAME}
-        </h1>
-        <p class="mb-2 text-center text-gray-500">
-            Please register an account before you can use this application
-        </p>
-    {/if}
+    <h1 class="my-2 text-3xl text-center">
+        {import.meta.env.VITE_APP_NAME}
+    </h1>
     <input
         type="email"
         class="input input-bordered w-full"
@@ -72,21 +91,17 @@
     </label>
     <button
         class="btn btn-primary mt-2"
-        title={$page.data.is_registered
-            ? 'Login to application'
-            : 'Register new account'}
+        title="Login to application"
         disabled={!login.email ||
             !isValidEmail(login.email) ||
             !login.password ||
             login.loading}
-        on:click={() => loginFormAction()}
+        on:click={() => doLogin()}
     >
         {#if login.loading}
             <span class="loading loading-spinner loading-xs"></span> Loading...
-        {:else if $page.data.is_registered}
-            <LogIn size={16} /> Login
         {:else}
-            <Check size={16} /> Register
+            <LogIn size={16} /> Login
         {/if}
     </button>
 </main>

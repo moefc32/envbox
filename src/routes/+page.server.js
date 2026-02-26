@@ -1,7 +1,7 @@
 import { createHash } from 'crypto';
 import decodeToken from '$lib/server/token';
-import modelAuth from '$lib/server/model/auth';
-import modelEnv from '$lib/server/model/env';
+import modelAuth from '$lib/server/db/model/auth';
+import modelEnv from '$lib/server/db/model/env';
 
 export async function load({ cookies, url }) {
     const env = url.searchParams.get('env');
