@@ -16,11 +16,7 @@
     let recentActivity;
 
     function updateClock() {
-        const now = Date.now();
-        currentTime = {
-            long: datePrettier(now, true),
-            short: datePrettier(now, false),
-        };
+        currentTime = Date.now();
     }
 
     updateClock();
@@ -71,10 +67,16 @@
             >
                 <CalendarClock size={40} class={'text-accent'} />
                 <span class="text-lg text-gray-700 font-bold md:hidden">
-                    {currentTime.short}
+                    {datePrettier(currentTime, {
+                        date: 'short',
+                        time: true,
+                    })}
                 </span>
                 <span class="text-lg text-gray-700 font-bold hidden md:inline">
-                    {currentTime.long}
+                    {datePrettier(currentTime, {
+                        date: true,
+                        time: true,
+                    })}
                 </span>
             </div>
         </div>

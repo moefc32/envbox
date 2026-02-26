@@ -120,7 +120,10 @@
             </button>
             {#if contents?.timestamp}
                 <p class="text-gray-500 text-xs">
-                    Last saved at {datePrettier(contents?.timestamp)}
+                    Last saved at {datePrettier(contents.timestamp, {
+                        date: true,
+                        time: true,
+                    })}
                 </p>
             {/if}
         </div>
