@@ -39,7 +39,7 @@
 
             profile.password = '';
 
-            toast.success('Profile info updated successfully.');
+            toast.success('Account info updated successfully.');
             goto('/', { invalidateAll: true });
         } catch (e) {
             console.error(e);
@@ -106,7 +106,7 @@
             >
                 <li>
                     <button on:click={() => edit_profile.showModal()}>
-                        Edit Profile
+                        Edit Account
                     </button>
                 </li>
                 <li>
@@ -120,7 +120,7 @@
 <!-- svelte-ignore a11y_missing_attribute -->
 <dialog id="edit_profile" class="modal modal-bottom sm:modal-middle">
     <div class="modal-box">
-        <h3 class="text-lg font-bold">Edit Profile</h3>
+        <h3 class="text-lg font-bold">Edit Account</h3>
         <div
             class="mx-auto bg-white w-36 rounded-full overflow-hidden border-2 border-gray-200"
         >
