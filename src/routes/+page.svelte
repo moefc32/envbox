@@ -33,7 +33,7 @@
             if (!response.ok) throw new Error();
 
             toast.success('You are now logged out.');
-            goto('/login', { invalidateAll: true });
+            await goto('/login', { invalidateAll: true });
         } catch (e) {
             console.error(e);
             toast.error('Logout failed, please try again!');

@@ -33,7 +33,7 @@
             if (!response.ok) throw new Error();
 
             toast.success('Site initialization completed, you may now log in.');
-            goto('/login', { invalidateAll: true });
+            await goto('/login', { invalidateAll: true });
         } catch (e) {
             register.loading = false;
 

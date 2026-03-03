@@ -33,7 +33,7 @@
             if (!response.ok) throw new Error();
 
             toast.success('You have successfully logged in.');
-            goto('/', { invalidateAll: true });
+            await goto('/', { invalidateAll: true });
         } catch (e) {
             login.loading = false;
 

@@ -40,7 +40,7 @@
             profile.password = '';
 
             toast.success('Account info updated successfully.');
-            goto('/', { invalidateAll: true });
+            await goto('/', { invalidateAll: true });
         } catch (e) {
             console.error(e);
             toast.error('Update profile info failed, please try again!');
