@@ -15,7 +15,7 @@
         "@sveltejs/vite-plugin-svelte": "^5.1.1",
         "@tailwindcss/vite": "^4.2.1",
         "daisyui": "^5.5.19",
-        "svelte": "^5.53.6",
+        "svelte": "^5.53.7",
         "svoast": "^3.0.3",
         "tailwindcss": "^4.2.1",
         "vite": "^6.4.1"
@@ -29,6 +29,7 @@
         "dotenv": "^16.6.1",
         "drizzle-orm": "^0.45.1",
         "jsonwebtoken": "^9.0.3",
+        "ky": "^1.14.3",
         "lucide-svelte": "^0.563.0"
     },
     "pnpm": {

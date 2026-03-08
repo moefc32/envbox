@@ -2,6 +2,7 @@
     import { goto } from '$app/navigation';
     import { Eye, EyeOff, LogIn, Check } from 'lucide-svelte';
     import { toast } from 'svoast';
+    import ky from 'ky';
     import isValidEmail from '$lib/isValidEmail';
 
     let register = {
@@ -22,15 +23,9 @@
             register.loading = true;
             if (!isValidEmail(register.email)) throw new Error();
 
-            const response = await fetch('/api/auth', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(register),
+            await ky.put('/api/auth', {
+                json: register,
             });
-
-            if (!response.ok) throw new Error();
 
             toast.success('Site initialization completed, you may now log in.');
             await goto('/login', { invalidateAll: true });

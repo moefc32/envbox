@@ -3,6 +3,7 @@
     import { goto } from '$app/navigation';
     import { Menu, X, ChevronDown, Eye, EyeOff } from 'lucide-svelte';
     import { toast } from 'svoast';
+    import ky from 'ky';
     import isValidEmail from '$lib/isValidEmail';
 
     import sidebarDrawer from '$lib/stores/sidebarDrawer';
@@ -27,16 +28,9 @@
         try {
             if (!isValidEmail(profile.email)) throw new Error();
 
-            const response = await fetch('/api/auth', {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(profile),
+            await ky.patch('/api/auth', {
+                json: profile,
             });
-
-            if (!response.ok) throw new Error();
-
             profile.password = '';
 
             toast.success('Account info updated successfully.');
@@ -53,7 +47,7 @@
 <header class="navbar bg-primary/75 text-white px-3">
     <div class="flex-1 hidden md:block">
         <button
-            class="px-3 text-2xl font-bold cursor-pointer"
+            class="flex items-center ps-10 bg-[url('/favicon.svg')] bg-left bg-no-repeat bg-contain text-xl font-semibold h-[32px] cursor-pointer"
             on:click={async () => {
                 await closeEditor();
                 goto('/', { invalidateAll: true });

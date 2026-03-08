@@ -2,6 +2,7 @@
     import { goto } from '$app/navigation';
     import { ArrowLeft, Check, Trash2, X } from 'lucide-svelte';
     import { toast } from 'svoast';
+    import ky from 'ky';
     import datePrettier from '$lib/datePrettier';
 
     import initialValues from '$lib/stores/initialValues';
@@ -12,20 +13,12 @@
 
     async function saveEnvironment() {
         try {
-            const response = await fetch(
-                contents.id ? `/api/env?id=${contents.id}` : '/api/env',
-                {
-                    method: contents.id ? 'PATCH' : 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(contents),
-                },
-            );
+            const method = contents.id ? 'patch' : 'post';
+            const result = await ky[method]('/api/env', {
+                searchParams: contents.id ? { id: contents.id } : {},
+                json: contents,
+            }).json();
 
-            if (!response.ok) throw new Error();
-
-            const result = await response.json();
             initialValues.set({
                 title: result.data.column.title,
                 content: result.data.column.content,
@@ -50,14 +43,9 @@
 
     async function deleteEnvironment(id) {
         try {
-            const response = await fetch(`/api/env?id=${id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+            await ky.delete('/api/env', {
+                searchParams: { id },
             });
-
-            if (!response.ok) throw new Error();
 
             toast.success('Environment deleted successfully.');
             await reloadEnvList();

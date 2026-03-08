@@ -52,7 +52,7 @@
     <main class="flex flex-1 flex-col items-stretch gap-4 py-4">
         <div class="flex flex-col lg:flex-row items-start gap-4">
             <div
-                class="card flex justify-center gap-3 p-6 bg-secondary/15 border-[1px] border-secondary/25 w-full lg:w-2/5 h-30 shadow-lg"
+                class="card flex justify-center gap-3 p-6 bg-secondary/15 border-1 border-secondary/25 w-full lg:w-2/5 h-30 shadow-lg"
             >
                 <FileCog size={40} class={'text-secondary'} />
                 <span class="text-lg text-gray-700 font-bold">
@@ -63,7 +63,7 @@
                 </span>
             </div>
             <div
-                class="card flex justify-center gap-3 p-6 bg-accent/20 border-[1px] border-accent/25 w-full lg:w-3/5 h-30 shadow-lg"
+                class="card flex justify-center gap-3 p-6 bg-accent/20 border-1 border-accent/25 w-full lg:w-3/5 h-30 shadow-lg"
             >
                 <CalendarClock size={40} class={'text-accent'} />
                 <span class="text-lg text-gray-700 font-bold md:hidden">
@@ -81,7 +81,7 @@
             </div>
         </div>
         <div
-            class="card flex justify-center gap-3 px-6 py-4 border-[1px] border-black/20 w-full"
+            class="card flex justify-center gap-3 px-6 py-4 border-1 border-black/20 w-full"
         >
             {#if recentActivity}
                 <span class="text-gray-700">

@@ -26,7 +26,7 @@
         : 'left-0'} flex flex-col md:py-4 bg-white w-[280px] fixed md:static top-[100] left-0 transition-transform duration-300 ease-in-out h-[calc(100%-64px)] md:h-auto z-[100] shadow-xl md:shadow-none"
 >
     <div
-        class="md:card flex flex-col gap-2 py-3 bg-primary/15 border-[1px] border-primary/20 w-full min-h-full overflow-y-auto"
+        class="md:card flex flex-col gap-2 py-3 bg-primary/15 border-1 border-primary/20 w-full min-h-full overflow-y-auto"
     >
         <div class="flex gap-1 mx-2 pb-2 border-primary/50 border-b-[1px]">
             <label

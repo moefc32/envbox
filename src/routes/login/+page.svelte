@@ -2,6 +2,7 @@
     import { goto } from '$app/navigation';
     import { Eye, EyeOff, LogIn, Check } from 'lucide-svelte';
     import { toast } from 'svoast';
+    import ky from 'ky';
     import isValidEmail from '$lib/isValidEmail';
 
     let login = {
@@ -22,15 +23,9 @@
             login.loading = true;
             if (!isValidEmail(login.email)) throw new Error();
 
-            const response = await fetch('/api/auth', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(login),
+            await ky.post('/api/auth', {
+                json: login,
             });
-
-            if (!response.ok) throw new Error();
 
             toast.success('You have successfully logged in.');
             await goto('/', { invalidateAll: true });
