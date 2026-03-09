@@ -1,11 +1,16 @@
+<div align="center">
+<img src="./static/favicon.svg" width="80"/>
+
 # Envbox
+
+**Envbox is a SvelteKit application to store .env configurations**
+
 <a href="https://opensource.org/license/mit"><img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" height="24" /></a>
 <a href="https://pnpm.io/"><img src="https://img.shields.io/badge/Package-PNPM-orange?style=flat-square" height="24" /></a>
 <img src="https://img.shields.io/badge/Module-ECMAScript-yellow?style=flat-square" height="24" />
+</div>
 
-Envbox is a SvelteKit application to store .env configurations
-
-![image](https://github.com/user-attachments/assets/d097051c-5be8-4dde-becc-0082199dc82b)
+![Preview](https://github.com/user-attachments/assets/3d0507a8-9094-45a1-946e-33d52db88482)
 
 ## Features
 - Create, update, and delete environment configurations
@@ -13,10 +18,9 @@ Envbox is a SvelteKit application to store .env configurations
 - Automatic database installation
 
 ## Stack Used
-- [SvelteKit](https://svelte.dev/)
-- [Tailwind](https://tailwindcss.com/)
-- [daisyUI](https://daisyui.com/)
-- [SQLite](https://www.sqlite.org/)
+- Monolithic [SvelteKit](https://svelte.dev/)
+- [Tailwind](https://tailwindcss.com/) with [daisyUI](https://daisyui.com/)
+- [SQLite](https://www.sqlite.org/) with [Drizzle ORM](https://orm.drizzle.team/)
 
 ## Local Preview
 1. Clone this repository to your local computer
