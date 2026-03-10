@@ -1,28 +1,23 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/plus-jakarta-sans';
+@import '@fontsource-variable/source-code-pro';
 
 @plugin 'daisyui' {
     exclude: rootscrollgutter;
 }
 
-@import '@fontsource-variable/plus-jakarta-sans';
-@import '@fontsource-variable/source-code-pro';
+@plugin "daisyui/theme" {
+    name: "light";
+    --color-error-content: var(--color-white);
+}
+
+@plugin "daisyui/theme" {
+    name: "dark";
+    --color-error-content: var(--color-white);
+}
 
 body {
     font-family: 'Plus Jakarta Sans Variable', sans-serif;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.spin {
-    animation: spin 1s linear infinite;
 }
 
 input::-ms-reveal,
@@ -32,8 +27,8 @@ input[type="search"]::-webkit-search-cancel-button {
     display: none;
 }
 
-.spin {
-    animation: spin 1s linear infinite;
+textarea {
+    font-family: 'Source Code Pro Variable', monospace;
 }
 
 .important {
@@ -43,17 +38,4 @@ input[type="search"]::-webkit-search-cancel-button {
 .important::after {
     content: '*';
     color: var(--color-red-500);
-}
-
-.btn-error:not(.btn-outline),
-.btn-error:focus {
-    @apply text-white;
-}
-
-.btn-error.btn-outline:hover {
-    @apply text-white;
-}
-
-textarea {
-    font-family: 'Source Code Pro Variable', monospace;
 }
