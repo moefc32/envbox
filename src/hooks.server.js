@@ -17,72 +17,84 @@ function isRouteMatch(routes, path) {
 export const handle = async ({ event, resolve }) => {
     const { cookies, url } = event;
     const currentPath = url.pathname;
-    const isTokenValid = token.validate(cookies);
 
-    const lang = cookies.get('lang');
-    const validLang = lang && ['en', 'id'].includes(lang);
+    try {
+        const isTokenValid = token.validate(cookies);
 
-    if (!validLang) {
-        cookies.set('lang', 'en', {
-            path: '/',
-            httpOnly: true,
-        });
-    }
+        const lang = cookies.get('lang');
+        const validLang = lang && ['en', 'id'].includes(lang);
 
-    event.locals.lang = validLang ? lang : 'en';
-    event.locals.publicRoutes = PUBLIC_ROUTES;
-    event.locals.unauthRoutes = UNAUTH_ROUTES;
+        if (!validLang) {
+            cookies.set('lang', 'en', {
+                path: '/',
+                httpOnly: true,
+            });
+        }
 
-    if (isTokenValid) {
-        cookies.set('__session_active', '1', {
-            path: '/',
-            httpOnly: false,
-        });
-    } else {
-        cookies.delete('__session_active', {
-            path: '/',
-        });
-    }
+        event.locals.lang = validLang ? lang : 'en';
+        event.locals.publicRoutes = PUBLIC_ROUTES;
+        event.locals.unauthRoutes = UNAUTH_ROUTES;
 
-    let user = await model.getData(isTokenValid.id);
-    let isAuthenticated = false;
+        if (isTokenValid) {
+            cookies.set('__session_active', '1', {
+                path: '/',
+                httpOnly: false,
+            });
+        } else {
+            cookies.delete('__session_active', {
+                path: '/',
+            });
+        }
 
-    if (isTokenValid) {
-        isAuthenticated = !!user;
-    }
+        let user = await model.getData(isTokenValid.id);
+        let isAuthenticated = false;
 
-    if (!isAuthenticated) {
-        token.purge(cookies, [
-            'access_token',
-            'refresh_token',
-        ]);
+        if (isTokenValid) {
+            isAuthenticated = !!user;
+        }
 
-        if (!user) {
-            const isApiRoute =
-                isRouteMatch(PUBLIC_API_ROUTES, currentPath);
-            const isInitRoute = (currentPath === INIT_ROUTE);
+        if (!isAuthenticated) {
+            token.purge(cookies, [
+                'access_token',
+                'refresh_token',
+            ]);
 
-            if (!isApiRoute && !isInitRoute) {
-                throw redirect(303, INIT_ROUTE);
+            if (!user) {
+                const isApiRoute =
+                    isRouteMatch(PUBLIC_API_ROUTES, currentPath);
+                const isInitRoute = (currentPath === INIT_ROUTE);
+
+                if (!isApiRoute && !isInitRoute) {
+                    throw redirect(303, INIT_ROUTE);
+                }
+
+                return resolve(event);
             }
 
-            return resolve(event);
+            if (
+                isRouteMatch(PUBLIC_ROUTES, currentPath) ||
+                isRouteMatch(UNAUTH_ROUTES, currentPath) ||
+                isRouteMatch(PUBLIC_API_ROUTES, currentPath)
+            ) {
+                return resolve(event);
+            }
+
+            throw redirect(303, '/login');
         }
 
-        if (
-            isRouteMatch(PUBLIC_ROUTES, currentPath) ||
-            isRouteMatch(UNAUTH_ROUTES, currentPath) ||
-            isRouteMatch(PUBLIC_API_ROUTES, currentPath)
-        ) {
-            return resolve(event);
+        if (isRouteMatch(UNAUTH_ROUTES, currentPath)) {
+            throw redirect(303, '/');
         }
 
-        throw redirect(303, '/login');
-    }
+        return resolve(event);
+    } catch (e) {
+        if (e.status && e.status >= 300 && e.status < 400) {
+            throw e;
+        }
 
-    if (isRouteMatch(UNAUTH_ROUTES, currentPath)) {
-        throw redirect(303, '/');
-    }
+        console.error('\n--- CRITICAL HOOK ERROR ---\n');
+        console.error(e);
 
-    return resolve(event);
+        return await resolve(event);
+    }
 };
