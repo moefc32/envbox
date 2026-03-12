@@ -16,7 +16,6 @@
         "@tailwindcss/vite": "^4.2.1",
         "daisyui": "^5.5.19",
         "svelte": "^5.53.10",
-        "svoast": "^3.0.3",
         "tailwindcss": "^4.2.1",
         "vite": "^6.4.1"
     },
@@ -30,7 +29,8 @@
         "drizzle-orm": "^0.45.1",
         "jsonwebtoken": "^9.0.3",
         "ky": "^1.14.3",
-        "lucide-svelte": "^0.563.0"
+        "lucide-svelte": "^0.563.0",
+        "svelte-sonner": "^1.1.0"
     },
     "pnpm": {
         "onlyBuiltDependencies": [

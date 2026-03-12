@@ -1,7 +1,7 @@
 <script>
     import { goto } from '$app/navigation';
     import { ArrowLeft, Check, Trash2, X } from 'lucide-svelte';
-    import { toast } from 'svoast';
+    import { toast } from 'svelte-sonner';
     import ky from 'ky';
     import datePrettier from '$lib/datePrettier';
 

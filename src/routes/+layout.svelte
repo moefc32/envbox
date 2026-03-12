@@ -1,7 +1,7 @@
 <script>
     import '../app.css';
     import { onMount } from 'svelte';
-    import { Toasts } from 'svoast';
+    import { Toaster } from 'svelte-sonner';
 
     export let data;
 
@@ -39,5 +39,13 @@
     class="flex flex-col justify-center items-center bg-teal-100 w-full h-screen"
 >
     <slot />
-    <Toasts position={'bottom-center'} />
 </div>
+
+<Toaster
+    richColors
+    theme="system"
+    position="bottom-center"
+    toastOptions={{
+        style: 'font-size: 1rem;',
+    }}
+/>

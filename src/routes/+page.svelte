@@ -1,6 +1,6 @@
 <script>
     import { goto } from '$app/navigation';
-    import { toast } from 'svoast';
+    import { toast } from 'svelte-sonner';
     import ky from 'ky';
     import isValidEmail from '$lib/isValidEmail';
 

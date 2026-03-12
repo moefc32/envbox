@@ -38,6 +38,9 @@ importers:
       lucide-svelte:
         specifier: ^0.563.0
         version: 0.563.0(svelte@5.53.10)
+      svelte-sonner:
+        specifier: ^1.1.0
+        version: 1.1.0(svelte@5.53.10)
     devDependencies:
       '@sveltejs/adapter-node':
         specifier: ^5.5.4
@@ -57,9 +60,6 @@ importers:
       svelte:
         specifier: ^5.53.10
         version: 5.53.10
-      svoast:
-        specifier: ^3.0.3
-        version: 3.0.3(svelte@5.53.10)
       tailwindcss:
         specifier: ^4.2.1
         version: 4.2.1
@@ -1179,6 +1179,11 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
+  runed@0.28.0:
+    resolution: {integrity: sha512-k2xx7RuO9hWcdd9f+8JoBeqWtYrm5CALfgpkg2YDB80ds/QE4w0qqu34A7fqiAwiBBSBQOid7TLxwxVC27ymWQ==}
+    peerDependencies:
+      svelte: ^5.7.0
+
   safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
 
@@ -1233,14 +1238,14 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  svelte-sonner@1.1.0:
+    resolution: {integrity: sha512-3lYM6ZIqWe+p9vwwWHGWP/ZdvHiUtzURsud2quIxivrX4rvpXh6i+geBGn0m3JS6KwW6W8VgbOl3xQMcDuh6gg==}
+    peerDependencies:
+      svelte: ^5.0.0
+
   svelte@5.53.10:
     resolution: {integrity: sha512-UcNfWzbrjvYXYSk+U2hME25kpb87oq6/WVLeBF4khyQrb3Ob/URVlN23khal+RbdCUTMfg4qWjI9KZjCNFtYMQ==}
     engines: {node: '>=18'}
-
-  svoast@3.0.3:
-    resolution: {integrity: sha512-Bi4shNEjseyfBRiHylr7l+Ib4nGdiOd8Jc94AYnJ0TGD5f2BldKfeYCd12aJTPG5v9phjhCDuZ2ArlAzhMwZjQ==}
-    peerDependencies:
-      svelte: ^5.0.0
 
   tailwindcss@4.2.1:
     resolution: {integrity: sha512-/tBrSQ36vCleJkAOsy9kbNTgaxvGbyOamC30PRePTQe/o1MFwEKHQk4Cn7BNGaPtjp+PuUrByJehM1hgxfq4sw==}
@@ -2206,6 +2211,11 @@ snapshots:
       '@rollup/rollup-win32-x64-msvc': 4.59.0
       fsevents: 2.3.3
 
+  runed@0.28.0(svelte@5.53.10):
+    dependencies:
+      esm-env: 1.2.2
+      svelte: 5.53.10
+
   safe-buffer@5.2.1: {}
 
   semver@6.3.1: {}
@@ -2252,6 +2262,11 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
+  svelte-sonner@1.1.0(svelte@5.53.10):
+    dependencies:
+      runed: 0.28.0(svelte@5.53.10)
+      svelte: 5.53.10
+
   svelte@5.53.10:
     dependencies:
       '@jridgewell/remapping': 2.3.5
@@ -2270,10 +2285,6 @@ snapshots:
       locate-character: 3.0.0
       magic-string: 0.30.21
       zimmerframe: 1.1.4
-
-  svoast@3.0.3(svelte@5.53.10):
-    dependencies:
-      svelte: 5.53.10
 
   tailwindcss@4.2.1: {}
 
