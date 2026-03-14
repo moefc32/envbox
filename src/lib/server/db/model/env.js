@@ -1,7 +1,7 @@
 import { init as cuid2 } from '@paralleldrive/cuid2';
 import { eq, or, like, sql, desc } from 'drizzle-orm';
 import { db } from '../drizzle';
-import { env } from '../schema';
+import { Envs } from '../schema';
 
 export default {
     searchData: async (keyword) => {
@@ -10,16 +10,16 @@ export default {
 
             const result = await db
                 .select({
-                    id: env.id,
-                    title: env.title,
-                    content: env.content,
-                    timestamp: env.timestamp,
+                    id: Envs.id,
+                    title: Envs.title,
+                    content: Envs.content,
+                    timestamp: Envs.timestamp,
                 })
-                .from(env)
+                .from(Envs)
                 .where(
                     or(
-                        like(sql`lower(${env.title})`, search.toLowerCase()),
-                        like(sql`lower(${env.content})`, search.toLowerCase())
+                        like(sql`lower(${Envs.title})`, search.toLowerCase()),
+                        like(sql`lower(${Envs.content})`, search.toLowerCase())
                     )
                 );
 
@@ -34,21 +34,21 @@ export default {
             const result = !id
                 ? await db
                     .select({
-                        id: env.id,
-                        title: env.title,
-                        timestamp: env.timestamp,
+                        id: Envs.id,
+                        title: Envs.title,
+                        timestamp: Envs.timestamp,
                     })
-                    .from(env)
-                    .orderBy(desc(env.timestamp))
+                    .from(Envs)
+                    .orderBy(desc(Envs.timestamp))
                 : await db
                     .select({
-                        id: env.id,
-                        title: env.title,
-                        content: env.content,
-                        timestamp: env.timestamp,
+                        id: Envs.id,
+                        title: Envs.title,
+                        content: Envs.content,
+                        timestamp: Envs.timestamp,
                     })
-                    .from(env)
-                    .where(eq(env.id, id));
+                    .from(Envs)
+                    .where(eq(Envs.id, id));
 
             return result;
         } catch (e) {
@@ -62,7 +62,7 @@ export default {
             const cuid = cuid2({ length: 12 })();
 
             const result = await db
-                .insert(env)
+                .insert(Envs)
                 .values({
                     id: cuid,
                     title: data.title,
@@ -89,13 +89,13 @@ export default {
             const timestamp = Date.now();
 
             const result = await db
-                .update(env)
+                .update(Envs)
                 .set({
                     ...(data.title !== undefined && { title: data.title }),
                     ...(data.content !== undefined && { content: data.content }),
                     timestamp,
                 })
-                .where(eq(env.id, id));
+                .where(eq(Envs.id, id));
 
             return {
                 column: {
@@ -114,8 +114,8 @@ export default {
     deleteData: async (id) => {
         try {
             const result = await db
-                .delete(env)
-                .where(eq(env.id, id));
+                .delete(Envs)
+                .where(eq(Envs.id, id));
 
             return result;
         } catch (e) {

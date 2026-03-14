@@ -1,7 +1,7 @@
 import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
 import { sql } from 'drizzle-orm';
 
-export const auth = sqliteTable('auth', {
+export const Users = sqliteTable('Users', {
 	id: text('id')
 		.primaryKey()
 		.default(sql`lower(hex(randomblob(16)))`),
@@ -9,7 +9,7 @@ export const auth = sqliteTable('auth', {
 	password: text('password').notNull(),
 });
 
-export const env = sqliteTable('env', {
+export const Envs = sqliteTable('Envs', {
 	id: text('id')
 		.primaryKey()
 		.notNull(),
