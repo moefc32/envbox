@@ -3,7 +3,7 @@
     import { onMount } from 'svelte';
     import { Toaster } from 'svelte-sonner';
 
-    export let data;
+    let { children, data } = $props();
 
     onMount(() => {
         function handleBfcache(event) {
@@ -38,7 +38,7 @@
 <div
     class="flex flex-col justify-center items-center bg-teal-100 w-full h-screen"
 >
-    <slot />
+    {@render children()}
 </div>
 
 <Toaster
