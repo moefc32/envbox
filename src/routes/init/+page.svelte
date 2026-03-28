@@ -41,7 +41,7 @@
 </script>
 
 <main
-    class="card flex flex-col gap-2 my-auto p-6 bg-white w-full max-w-[320px] shadow-2xl"
+    class="card flex flex-col gap-2 my-auto p-6 bg-white w-full max-w-80 shadow-2xl"
 >
     <h1 class="mt-2 text-3xl text-center">
         {import.meta.env.VITE_APP_NAME}
@@ -66,7 +66,7 @@
                 on:keydown={handleKeydown}
             />
             <button
-                class="-ms-8 text-black z-[100] cursor-pointer"
+                class="-ms-8 text-black z-10 cursor-pointer"
                 title="Click to show password"
                 on:click={() => (showPassword = !showPassword)}
             >
@@ -81,7 +81,7 @@
                 on:keydown={handleKeydown}
             />
             <button
-                class="-ms-8 text-black z-[100] cursor-pointer"
+                class="-ms-8 text-black z-10 cursor-pointer"
                 title="Click to hide password"
                 on:click={() => (showPassword = !showPassword)}
             >
