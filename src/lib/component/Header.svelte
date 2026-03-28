@@ -47,7 +47,7 @@
 <header class="navbar bg-primary/75 text-white px-3">
     <div class="flex-1 hidden md:block">
         <button
-            class="flex items-center ps-10 bg-[url('/favicon.svg')] bg-left bg-no-repeat bg-contain text-xl font-semibold h-[32px] cursor-pointer"
+            class="flex items-center ps-10 bg-[url('/favicon.svg')] bg-left bg-no-repeat bg-contain text-xl font-semibold h-8 cursor-pointer"
             on:click={async () => {
                 await closeEditor();
                 goto('/', { invalidateAll: true });
@@ -96,7 +96,7 @@
             </div>
             <ul
                 tabindex="0"
-                class="menu menu-sm dropdown-content mt-3 p-2 bg-base-100 text-black w-32 rounded-box z-[1] shadow-lg"
+                class="menu menu-sm dropdown-content mt-3 p-2 bg-base-100 text-black w-32 rounded-box z-10 shadow-lg"
             >
                 <li>
                     <button on:click={() => edit_profile.showModal()}>
@@ -147,7 +147,7 @@
                         on:keydown={handleKeydown}
                     />
                     <button
-                        class="-ms-8 text-black z-[100] cursor-pointer"
+                        class="-ms-8 text-black z-10 cursor-pointer"
                         title="Click to show password"
                         on:click={() => (showPassword = !showPassword)}
                     >
@@ -162,7 +162,7 @@
                         on:keydown={handleKeydown}
                     />
                     <button
-                        class="-ms-8 text-black z-[100] cursor-pointer"
+                        class="-ms-8 text-black z-10 cursor-pointer"
                         title="Click to hide password"
                         on:click={() => (showPassword = !showPassword)}
                     >

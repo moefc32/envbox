@@ -23,12 +23,12 @@
 <aside
     class="{$sidebarDrawer
         ? 'active'
-        : 'left-0'} flex flex-col md:py-4 bg-white w-[280px] fixed md:static top-[100] left-0 transition-transform duration-300 ease-in-out h-[calc(100%-64px)] md:h-auto z-[100] shadow-xl md:shadow-none"
+        : 'left-0'} flex flex-col md:py-4 bg-white w-70 fixed md:static top-[100] left-0 transition-transform duration-300 ease-in-out h-[calc(100%-64px)] md:h-auto z-10 shadow-xl md:shadow-none"
 >
     <div
         class="md:card flex flex-col gap-2 py-3 bg-primary/15 border-1 border-primary/20 w-full min-h-full overflow-y-auto"
     >
-        <div class="flex gap-1 mx-2 pb-2 border-primary/50 border-b-[1px]">
+        <div class="flex gap-1 mx-2 pb-2 border-primary/50 border-b">
             <label
                 class="input input-bordered input-sm flex items-center gap-2 w-full"
             >
@@ -41,7 +41,7 @@
                 />
                 {#if search?.keyword}
                     <button
-                        class="-ms-8 text-black z-[100] cursor-pointer"
+                        class="-ms-8 text-black z-10 cursor-pointer"
                         title="Click to close search"
                         on:click={() => {
                             search.keyword = '';
