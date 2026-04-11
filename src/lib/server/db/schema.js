@@ -9,8 +9,9 @@ export const Users = sqliteTable('Users', {
 });
 
 export const Envs = sqliteTable('Envs', {
-	id: text('id').primaryKey().notNull(),
+	id: text('id').primaryKey()
+		.$defaultFn(() => sql`lower(hex(randomblob(16)))`),
 	title: text('title').notNull(),
 	content: text('content'),
-	timestamp: integer('timestamp').notNull(),
+	timestamp: integer('timestamp', { mode: 'timestamp_ms' }).notNull(),
 });

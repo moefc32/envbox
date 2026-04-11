@@ -1,4 +1,3 @@
-import { init as cuid2 } from '@paralleldrive/cuid2';
 import { eq, or, like, sql, desc } from 'drizzle-orm';
 import { db } from '../drizzle';
 import { Envs } from '../schema';
@@ -58,27 +57,18 @@ export default {
     },
     createData: async (data) => {
         try {
-            const timestamp = Date.now();
-            const cuid = cuid2({ length: 12 })();
+            const timestamp = new Date();
 
-            const result = await db
+            const [result] = await db
                 .insert(Envs)
                 .values({
-                    id: cuid,
                     title: data.title,
                     content: data.content,
                     timestamp,
-                });
+                })
+                .returning();
 
-            return {
-                column: {
-                    id: cuid,
-                    title: data.title,
-                    content: data.content,
-                    timestamp,
-                },
-                ...result,
-            };
+            return result;
         } catch (e) {
             console.error(e);
             throw new Error('Error when creating data!');
@@ -86,7 +76,7 @@ export default {
     },
     editData: async (data, id) => {
         try {
-            const timestamp = Date.now();
+            const timestamp = new Date();
 
             const result = await db
                 .update(Envs)
@@ -95,17 +85,10 @@ export default {
                     ...(data.content !== undefined && { content: data.content }),
                     timestamp,
                 })
-                .where(eq(Envs.id, id));
+                .where(eq(Envs.id, id))
+                .returning();
 
-            return {
-                column: {
-                    id,
-                    title: data.title,
-                    content: data.content,
-                    timestamp,
-                },
-                ...result,
-            };
+            return result;
         } catch (e) {
             console.error(e);
             throw new Error('Error when editing data!');

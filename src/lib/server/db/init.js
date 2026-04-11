@@ -12,7 +12,7 @@ export default async function setSchema() {
 
     await db.run(sql`
         CREATE TABLE IF NOT EXISTS Envs (
-            id TEXT PRIMARY KEY NOT NULL,
+            id TEXT PRIMARY KEY DEFAULT (lower(hex(randomblob(16)))),
             title TEXT NOT NULL,
             content TEXT,
             timestamp INTEGER NOT NULL
