@@ -20,18 +20,18 @@
             }).json();
 
             initialValues.set({
-                title: result.data.column.title,
-                content: result.data.column.content,
+                title: result.data.title,
+                content: result.data.content,
             });
 
             toast.success(
                 `${contents.id ? 'Environment' : 'New environment'} saved successfully.`,
             );
 
-            contents.id = result.data.column.id;
-            contents.title = result.data.column.title;
-            contents.content = result.data.column.content;
-            contents.timestamp = result.data.column.timestamp;
+            contents.id = result.data.id;
+            contents.title = result.data.title;
+            contents.content = result.data.content;
+            contents.timestamp = result.data.timestamp;
             delete contents.is_new;
 
             await reloadEnvList();
