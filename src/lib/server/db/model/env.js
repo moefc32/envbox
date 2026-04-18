@@ -1,6 +1,6 @@
 import { eq, or, like, sql, desc } from 'drizzle-orm';
-import { db } from '../drizzle';
 import { Envs } from '../schema';
+import db from '../drizzle';
 
 export default {
     searchData: async (keyword) => {
