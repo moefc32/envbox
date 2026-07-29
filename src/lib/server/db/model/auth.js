@@ -48,7 +48,7 @@ export default {
     },
     editData: async (data, id) => {
         try {
-            const result = await db.update(Users)
+            const [result] = await db.update(Users)
                 .set({
                     email: data.email ?? undefined,
                     password: data.password ?? undefined,
@@ -59,7 +59,7 @@ export default {
             return result;
         } catch (e) {
             console.error(e);
-            throw new Error('Error when editing data!');
+            throw new Error('Error when updating data!');
         }
     },
 }

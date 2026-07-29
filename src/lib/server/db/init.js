@@ -7,7 +7,7 @@ export default async function setSchema() {
             id TEXT PRIMARY KEY DEFAULT (lower(hex(randomblob(16)))),
             email TEXT NOT NULL UNIQUE,
             password TEXT NOT NULL
-        )
+        );
     `);
 
     await db.run(sql`
@@ -16,6 +16,6 @@ export default async function setSchema() {
             title TEXT NOT NULL,
             content TEXT,
             timestamp INTEGER NOT NULL
-        )
+        );
     `);
 }

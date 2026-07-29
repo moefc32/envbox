@@ -78,7 +78,7 @@ export default {
         try {
             const timestamp = new Date();
 
-            const result = await db
+            const [result] = await db
                 .update(Envs)
                 .set({
                     ...(data.title !== undefined && { title: data.title }),
@@ -91,7 +91,7 @@ export default {
             return result;
         } catch (e) {
             console.error(e);
-            throw new Error('Error when editing data!');
+            throw new Error('Error when updating data!');
         }
     },
     deleteData: async (id) => {
