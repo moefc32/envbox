@@ -1,7 +1,7 @@
 <script>
     import { page } from '$app/stores';
     import { goto } from '$app/navigation';
-    import { Menu, X, ChevronDown, Eye, EyeOff } from 'lucide-svelte';
+    import { Menu, X, ChevronDown, Eye, EyeOff } from '@lucide/svelte';
     import { toast } from 'svelte-sonner';
     import ky from 'ky';
     import isValidEmail from '$lib/isValidEmail';

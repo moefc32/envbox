@@ -1,6 +1,6 @@
 <script>
     import { onMount } from 'svelte';
-    import { FileCog, CalendarClock } from 'lucide-svelte';
+    import { FileCog, CalendarClock } from '@lucide/svelte';
     import datePrettier from '$lib/datePrettier';
 
     export let contents;

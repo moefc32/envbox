@@ -1,5 +1,5 @@
 <script>
-    import { X, Search, Plus, FileSearchCorner, File } from 'lucide-svelte';
+    import { X, Search, Plus, FileSearchCorner, File } from '@lucide/svelte';
 
     import sidebarDrawer from '$lib/stores/sidebarDrawer';
 
